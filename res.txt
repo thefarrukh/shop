@@ -1,0 +1,20 @@
+  246  python manage.py startapp common
+  247  touch .env
+  248  python3 manage.py createsuperuser
+  249  python manage.py makemigrations
+  250  python3 manage.py makemigrations
+  251  python3 manage.py migrate
+  252  python3 manage.py createsuperuser
+  253  python3 manage.py makemigrations
+  254  python3 manage.py createsuperuser
+  255  python3 manage.py migrate
+  256  python3 manage.py createsuperuser
+  257  python3 manage.py runserver
+  258  python3 manage.py startapp products
+  259  python3 manage.py startapp orders
+  260  python3 manage.py startapp payments
+  261  python3 manage.py makemigrations
+  262  python3 manage.py migrate
+  263  python3 manage.py makemigrations
+  264  python3 manage.py migrate
+  265  history | tail -n 20 > res.txt
