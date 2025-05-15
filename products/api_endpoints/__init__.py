@@ -1,1 +1,1 @@
-from ProductList import *
+from .ProductList import *
