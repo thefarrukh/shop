@@ -11,9 +11,9 @@ from rest_framework_simplejwt.views import (
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="VooCommerce API",
+      title="Shop API",
       default_version='v1',
-      description="VooCommerce platform API documentation",
+      description="Shop platform API documentation",
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="admin@@gmail.com"),
       license=openapi.License(name="BSD License"),
