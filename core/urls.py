@@ -24,9 +24,17 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('products/', include('products.urls')),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('accounts/', include('accounts.urls')),
+    path('medifiles/', include('common.api_endpoints.MediaFile.urls')),
+    path('products/', include('products.api_endpoints.Product.urls')),
+    path('product_variants/', include('products.api_endpoints.ProductVariant.urls')),
+    path('categories/', include('products.api_endpoints.Category.urls')),
+    path('brands/', include('products.api_endpoints.Brand.urls')),
+    path('colors/', include('products.api_endpoints.Color.urls')),
+    path('sizes/', include('products.api_endpoints.Size.urls')),
+
     path('admin/', admin.site.urls),
     # Swagger and Redoc URLs
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
