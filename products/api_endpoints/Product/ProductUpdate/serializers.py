@@ -1,22 +1,43 @@
 from rest_framework import serializers
 
-from products.models import Product
+from products.models import Product, Category
+from products.utils import slugify
+
+
+class CategoryProductUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = [
+            "id",
+            "name",
+            "slug"
+        ]
 
 class ProductUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'brand', 'slug', 'default_images', 'category']
+        fields = [
+            "name",
+            "description",
+            "brand",
+            "default_images",
+            "category"
+        ]
+    
+    def to_representation(self, instance):
+        instance = {
+            "id": instance.id,
+            "name": instance.name,
+            "description": instance.description,
+            "brand": instance.brand.name,
+            "slug": instance.slug,
+            "is_active": instance.is_active,
+            "category": CategoryProductUpdateSerializer(instance.category).data
+        }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.required = False
+        return instance
 
-    def validate(self, attrs):
-        brand = self.instance
-
-        if 'slug' in attrs:
-            slug = attrs['slug']
-            if Product.objects.filter(slug=slug).exclude(id=brand.id).exists():
-                raise serializers.ValidationError("Slug must be unique.")
-        return attrs
+    def update(self, instance, validated_data):
+        if "name" in validated_data:
+            validated_data["slug"] = slugify(validated_data["name"])
+        return super().update(instance, validated_data)

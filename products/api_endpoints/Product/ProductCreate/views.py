@@ -1,7 +1,15 @@
-from rest_framework.generics import CreateAPIView
-from products.api_endpoints.Product.ProductCreate.serializers import ProductCreateSerializer
-from products.models import Product
+from rest_framework.generics import GenericAPIView, CreateAPIView
+from rest_framework.mixins import CreateModelMixin
+from rest_framework import permissions
+from rest_framework.response import Response
 
-class ProductCreateAPIView(CreateAPIView):
+from products.models import Product
+from products.api_endpoints.Product.ProductCreate.serializers import ProductCreateSerializer
+
+
+class ProductCreateAPIView(GenericAPIView, CreateModelMixin):
     queryset = Product.objects.all()
     serializer_class = ProductCreateSerializer
+    permission_classes = [permissions.IsAdminUser]
+
+__all__ = ["ProductCreateAPIView"]

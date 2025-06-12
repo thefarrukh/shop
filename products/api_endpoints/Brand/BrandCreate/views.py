@@ -1,10 +1,12 @@
-from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.generics import CreateAPIView
+from rest_framework import permissions, parsers
 
-from products.api_endpoints.Brand.BrandCreate.serializers import BrandCreateSerializer
 from products.models import Brand
+from products.api_endpoints.Brand.BrandCreate.serializers import BrandCreateSerializer
+
 
 class BrandCreateAPIView(CreateAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandCreateSerializer
-    parser_classes = (MultiPartParser, FormParser) 
+    permission_classes = [permissions.IsAdminUser]
+    parser_classes = [parsers.MultiPartParser, parsers.FormParser]

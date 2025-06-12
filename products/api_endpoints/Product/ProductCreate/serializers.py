@@ -1,6 +1,17 @@
 from rest_framework import serializers
 
-from products.models import Product
+from products.models import Product, Category
+from products.utils import slugify
+
+
+class CategoryProductCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = [
+            "id",
+            "name",
+            "slug"
+        ]
 
 class ProductCreateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,21 +20,29 @@ class ProductCreateSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "brand",
-            "slug",
             "default_images",
-            "is_active",
             "category"
         ]
-
+    
     def to_representation(self, instance):
         instance = {
             "id": instance.id,
             "name": instance.name,
-            "brand": instance.brand,
+            "description": instance.description,
+            "brand": instance.brand.name,
             "slug": instance.slug,
-            "default_images": instance.default_images,
             "is_active": instance.is_active,
-            "category": instance.category
+            "category": CategoryProductCreateSerializer(instance.category).data
         }
 
         return instance
+
+    def create(self, validated_data):
+        is_exists = Product.objects.filter(slug=slugify(validated_data["name"])).exists()
+        if is_exists:
+            return serializers.ValidationError("Product with this name already exists (or deactivated).")
+        
+        return Product.objects.create(
+            slug = slugify(validated_data["name"]),
+            **validated_data
+        )

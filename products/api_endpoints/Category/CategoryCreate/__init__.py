@@ -1,1 +1,1 @@
-from .views import CategoryCreateAPIView
+from .views import *

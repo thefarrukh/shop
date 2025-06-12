@@ -1,9 +1,15 @@
 from rest_framework.generics import DestroyAPIView
 
-from products.api_endpoints.Product.ProductDelete.serializers import ProductDeleteSerializer
 from products.models import Product
+
 
 class ProductDeleteAPIView(DestroyAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductDeleteSerializer
-    lookup_field = 'id'
+    lookup_field = "slug"
+
+    def perform_destroy(self, instance):
+        instance.is_active = False
+        instance.save()
+
+
+__all__ = ["ProductDeleteAPIView"]

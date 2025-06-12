@@ -1,34 +1,37 @@
 from rest_framework import serializers
 
-from products.models import Product, Brand, Category
+from products.models import Product, Category
 
-class CategorySerializerForProductList(serializers.ModelSerializer):
+
+class CategoryProductListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = [
-            "id", 
-            "name", 
+            "id",
+            "name",
             "slug"
         ]
 
-class BrandSerializerForProductList(serializers.ModelSerializer):
-    class Meta:
-        model = Brand
-        fields = ['id', 
-                  'name', 
-                  'slug', 
-                  'logo']
-
 
 class ProductListSerializer(serializers.ModelSerializer):
-    brand = BrandSerializerForProductList()
-    category = CategorySerializerForProductList()
-
     class Meta:
         model = Product
-        fields = ['id', 
-                  'name', 
-                  'description', 
-                  'brand', 
-                  'slug', 
-                  'category']
+        fields = [
+            "id",
+            "name",
+            "description",
+            "brand",
+        ]
+    
+    def to_representation(self, instance):
+        instance = {
+            "id": instance.id,
+            "name": instance.name,
+            "description": instance.description,
+            "brand": instance.brand.name,
+            "slug": instance.slug,
+            "is_active": instance.is_active,
+            "category": CategoryProductListSerializer(instance.category).data
+        }
+
+        return instance
