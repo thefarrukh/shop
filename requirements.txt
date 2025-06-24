@@ -12,8 +12,11 @@ click-repl==0.3.0
 crispy-bootstrap4==2025.6
 Django==5.2.1
 django-crispy-forms==2.4
+django-cuser==2017.3.16
 django-jazzmin==3.0.1
 django-rosetta==0.10.2
+django-tinymce==4.1.0
+django-modeltranslation==0.17
 djangorestframework==3.16.0
 djangorestframework_simplejwt==5.5.0
 drf-yasg==1.21.10

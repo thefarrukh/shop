@@ -55,26 +55,27 @@ LOCAL_APPS = [
 ]
 
 EXTERNAL_APPS = [
-    'jazzmin',
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
+    'jazzmin',
     'crispy_forms',
     "crispy_bootstrap4",
     "rosetta",
+    "modeltranslation"
 ]
 
-INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
+INSTALLED_APPS = EXTERNAL_APPS + LOCAL_APPS + DJANGO_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -264,9 +265,9 @@ JAZZMIN_SETTINGS = {
     "use_google_fonts_cdn": True,
     "show_ui_builder": True,
 
-    "changeform_format": "carousel",
+    "changeform_format": "horizontal_tabs",
     "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
-    # "language_chooser": True,
+    "language_chooser": True,
 }
 
 # Crispy Forms
@@ -307,10 +308,21 @@ LANGUAGES = [
     ("ru", _("Russian"))
 ]
 
+# LANGUAGE_CODE = 'en'
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
 
-# CELERY SETTINGS
+MODELTRANSLATION_LANGUAGES = ('uz', 'en', 'ru')
+
+MODELTRANSLATION_FALLBACK_LANGUAGES = {
+    'default': ('en',),
+    'uz': ('en',),
+    'ru': ('en',),
+}
+
+# CELERY settings
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
