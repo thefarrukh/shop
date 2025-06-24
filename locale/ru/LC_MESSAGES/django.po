@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-24 15:00+0500\n"
+"POT-Creation-Date: 2025-06-24 15:05+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,16 +28,28 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: accounts/models.py:42 accounts/models.py:43
+#: accounts/models.py:42
 msgid "Cart"
 msgstr ""
 
-#: accounts/models.py:55 accounts/models.py:56
+#: accounts/models.py:43
+msgid "Carts"
+msgstr ""
+
+#: accounts/models.py:55
 msgid "Cart Item"
 msgstr ""
 
-#: common/models.py:20 common/models.py:21
+#: accounts/models.py:56
+msgid "Cart Items"
+msgstr ""
+
+#: common/models.py:20
 msgid "Media File"
+msgstr ""
+
+#: common/models.py:21
+msgid "Media Files"
 msgstr ""
 
 #: core/settings.py:306 products/admin.py:23
@@ -52,12 +64,20 @@ msgstr ""
 msgid "Russian"
 msgstr ""
 
-#: orders/models.py:18 orders/models.py:19
+#: orders/models.py:18
 msgid "Order"
 msgstr ""
 
-#: orders/models.py:32 orders/models.py:33
+#: orders/models.py:19
+msgid "Orders"
+msgstr ""
+
+#: orders/models.py:32
 msgid "Order Item"
+msgstr ""
+
+#: orders/models.py:33
+msgid "Order Items"
 msgstr ""
 
 #: products/admin.py:20
@@ -69,33 +89,61 @@ msgid "Product"
 msgstr ""
 
 #: products/models.py:22
-msgid "Procuct"
+msgid "Procucts"
 msgstr ""
 
-#: products/models.py:39 products/models.py:40
+#: products/models.py:39
 msgid "Product Variant"
 msgstr ""
 
-#: products/models.py:52 products/models.py:53
+#: products/models.py:40
+msgid "Product Variants"
+msgstr ""
+
+#: products/models.py:52
 msgid "Brand"
 msgstr ""
 
-#: products/models.py:65 products/models.py:66
+#: products/models.py:53
+msgid "Brands"
+msgstr ""
+
+#: products/models.py:65
 msgid "Category"
 msgstr ""
 
-#: products/models.py:77 products/models.py:78
+#: products/models.py:66
+msgid "Categories"
+msgstr ""
+
+#: products/models.py:77
 msgid "Size"
 msgstr ""
 
-#: products/models.py:89 products/models.py:90
+#: products/models.py:78
+msgid "Sizes"
+msgstr ""
+
+#: products/models.py:89
 msgid "Color"
 msgstr ""
 
-#: products/models.py:103 products/models.py:104
+#: products/models.py:90
+msgid "Colors"
+msgstr ""
+
+#: products/models.py:103
 msgid "Review"
 msgstr ""
 
-#: products/models.py:117 products/models.py:118
+#: products/models.py:104
+msgid "Reviews"
+msgstr ""
+
+#: products/models.py:117
 msgid "Comment"
+msgstr ""
+
+#: products/models.py:118
+msgid "Comments"
 msgstr ""

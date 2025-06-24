@@ -40,7 +40,7 @@ class Cart(BaseModel):
     
     class Meta:
         verbose_name = _("Cart")
-        verbose_name_plural = _("Cart")
+        verbose_name_plural = _("Carts")
 
 
 class CartItem(BaseModel):
@@ -53,4 +53,4 @@ class CartItem(BaseModel):
     
     class Meta:
         verbose_name = _("Cart Item")
-        verbose_name_plural = _("Cart Item")
+        verbose_name_plural = _("Cart Items")

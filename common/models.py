@@ -18,4 +18,4 @@ class MediaFile(BaseModel):
     
     class Meta:
         verbose_name = _("Media File")
-        verbose_name_plural = _("Media File")
+        verbose_name_plural = _("Media Files")

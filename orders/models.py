@@ -16,7 +16,7 @@ class Order(BaseModel):
     
     class Meta:
         verbose_name = _("Order")
-        verbose_name_plural = _("Order")
+        verbose_name_plural = _("Orders")
 
 
 class OrderItem(BaseModel):
@@ -30,4 +30,4 @@ class OrderItem(BaseModel):
     
     class Meta:
         verbose_name = _("Order Item")
-        verbose_name_plural = _("Order Item")
+        verbose_name_plural = _("Order Items")

@@ -19,7 +19,7 @@ class Product(BaseModel):
     
     class Meta:
         verbose_name = _("Product")
-        verbose_name_plural = _("Procuct")
+        verbose_name_plural = _("Procucts")
 
 
 class ProductVariant(BaseModel):
@@ -37,7 +37,7 @@ class ProductVariant(BaseModel):
     
     class Meta:
         verbose_name = _("Product Variant")
-        verbose_name_plural = _("Product Variant")
+        verbose_name_plural = _("Product Variants")
     
 
 class Brand(BaseModel):
@@ -50,7 +50,7 @@ class Brand(BaseModel):
     
     class Meta:
         verbose_name = _("Brand")
-        verbose_name_plural = _("Brand")
+        verbose_name_plural = _("Brands")
     
 
 class Category(BaseModel):
@@ -63,7 +63,7 @@ class Category(BaseModel):
     
     class Meta:
         verbose_name = _("Category")
-        verbose_name_plural = _("Category")
+        verbose_name_plural = _("Categories")
     
 
 class Size(BaseModel):
@@ -75,7 +75,7 @@ class Size(BaseModel):
     
     class Meta:
         verbose_name = _("Size")
-        verbose_name_plural = _("Size")
+        verbose_name_plural = _("Sizes")
 
 
 class Color(BaseModel):
@@ -87,7 +87,7 @@ class Color(BaseModel):
     
     class Meta:
         verbose_name = _("Color")
-        verbose_name_plural = _("Color")
+        verbose_name_plural = _("Colors")
     
 
 class Review(BaseModel):
@@ -101,7 +101,7 @@ class Review(BaseModel):
     
     class Meta:
         verbose_name = _("Review")
-        verbose_name_plural = _("Review")
+        verbose_name_plural = _("Reviews")
     
 
 class Comment(BaseModel):
@@ -115,4 +115,4 @@ class Comment(BaseModel):
     
     class Meta:
         verbose_name = _("Comment")
-        verbose_name_plural = _("Comment")
+        verbose_name_plural = _("Comments")
