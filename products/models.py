@@ -116,3 +116,19 @@ class Comment(BaseModel):
     class Meta:
         verbose_name = _("Comment")
         verbose_name_plural = _("Comments")
+
+
+class Story(BaseModel):
+    title = models.CharField(max_length=255, null=False, blank=False)
+    image = models.ImageField(upload_to="stories", null=False, blank=False)
+    product = models.ForeignKey(
+        "products.Product", on_delete=models.SET_NULL, null=True, blank=True
+    )
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"Story({self.title})"
+
+    class Meta:
+        verbose_name = _("Story")
+        verbose_name_plural = _("Stories")
