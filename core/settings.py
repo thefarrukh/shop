@@ -62,7 +62,8 @@ EXTERNAL_APPS = [
     'crispy_forms',
     "crispy_bootstrap4",
     "rosetta",
-    "modeltranslation"
+    "modeltranslation",
+    "django_celery_beat",
 ]
 
 INSTALLED_APPS = EXTERNAL_APPS + LOCAL_APPS + DJANGO_APPS
