@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 from common.models import BaseModel
+from django.utils.translation import gettext_lazy as _
 
 
 class Product(BaseModel):
@@ -15,6 +16,10 @@ class Product(BaseModel):
 
     def __str__(self):
         return f"{self.name}"
+    
+    class Meta:
+        verbose_name = _("Product")
+        verbose_name_plural = _("Procuct")
 
 
 class ProductVariant(BaseModel):
@@ -30,6 +35,10 @@ class ProductVariant(BaseModel):
     def __str__(self):
         return f"{self.product.name} - {self.price}"
     
+    class Meta:
+        verbose_name = _("Product Variant")
+        verbose_name_plural = _("Product Variant")
+    
 
 class Brand(BaseModel):
     name = models.CharField(max_length=255, null=False, blank=False)
@@ -38,6 +47,10 @@ class Brand(BaseModel):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = _("Brand")
+        verbose_name_plural = _("Brand")
     
 
 class Category(BaseModel):
@@ -48,6 +61,10 @@ class Category(BaseModel):
     def __str__(self):
         return self.name
     
+    class Meta:
+        verbose_name = _("Category")
+        verbose_name_plural = _("Category")
+    
 
 class Size(BaseModel):
     name = models.CharField(max_length=255, null=False, blank=False)
@@ -55,6 +72,10 @@ class Size(BaseModel):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = _("Size")
+        verbose_name_plural = _("Size")
 
 
 class Color(BaseModel):
@@ -63,6 +84,10 @@ class Color(BaseModel):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = _("Color")
+        verbose_name_plural = _("Color")
     
 
 class Review(BaseModel):
@@ -74,6 +99,10 @@ class Review(BaseModel):
     def __str__(self):
         return f"Review({self.id})"
     
+    class Meta:
+        verbose_name = _("Review")
+        verbose_name_plural = _("Review")
+    
 
 class Comment(BaseModel):
     product = models.ForeignKey('products.Product', on_delete=models.CASCADE, related_name="comments")
@@ -83,3 +112,7 @@ class Comment(BaseModel):
 
     def __str__(self):
         return f"Comment({self.id})"
+    
+    class Meta:
+        verbose_name = _("Comment")
+        verbose_name_plural = _("Comment")
