@@ -1,4 +1,5 @@
 amqp==5.3.1
+asarPy==1.0.1
 asgiref==3.8.1
 billiard==4.2.1
 celery==5.5.3
@@ -24,14 +25,18 @@ flower==2.0.1
 humanize==4.12.3
 idna==3.10
 inflection==0.5.1
+iniconfig==2.1.0
 kombu==5.5.4
 packaging==25.0
 pillow==11.2.1
+pluggy==1.6.0
 polib==1.2.0
 prometheus_client==0.22.1
 prompt_toolkit==3.0.51
 psycopg2-binary==2.9.10
+Pygments==2.19.2
 PyJWT==2.9.0
+pytest==8.4.1
 python-crontab==3.2.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.0

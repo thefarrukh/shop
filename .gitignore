@@ -121,7 +121,7 @@ ipython_config.py
 __pypackages__/
 
 # Celery stuff
-celerybeat-schedule
+celerybeat-*
 celerybeat.pid
 
 # SageMath parsed files
@@ -174,3 +174,6 @@ cython_debug/
 .pypirc
 
 media
+
+locale
+logs

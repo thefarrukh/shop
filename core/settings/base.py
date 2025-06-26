@@ -18,14 +18,14 @@ from datetime import timedelta
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mp)mm+d9dm$0q$7h_-&ku(*7abspo(deb!v=4=3v&o0pcfkf%n'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,6 +36,8 @@ AUTH_USER_MODEL = "accounts.User"
 
 
 # Application definition
+
+
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -66,7 +68,8 @@ EXTERNAL_APPS = [
     "django_celery_beat",
 ]
 
-INSTALLED_APPS = EXTERNAL_APPS + LOCAL_APPS + DJANGO_APPS
+INSTALLED_APPS = EXTERNAL_APPS + DJANGO_APPS + LOCAL_APPS
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,7 +115,9 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
-    }
+        "ATOMIC_REQUESTS": True,
+    },
+    
 }
 
 
@@ -276,28 +281,54 @@ JAZZMIN_SETTINGS = {
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-# Logging Suppoer
+# Logging Config
 
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
+    # Define formatters for log message appearance
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",  # Use string formatting style
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
         },
     },
-    "root": {
-        "handlers": ["console"],
-        "level": "WARNING",
+    # Define handlers to specify where logs go
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",  # Outputs to console
+            "level": "DEBUG",  # Capture all levels
+            "formatter": "simple",  # Use simple format for console
+        },
+        "file": {
+            "class": "logging.handlers.RotatingFileHandler",  # Rotates log files to manage size
+            "level": "DEBUG",  # Capture all levels
+            "formatter": "verbose",  # Use verbose format for files
+            "filename": os.path.join(BASE_DIR, "logs", "debug.log"),  # Log file path
+            "maxBytes": 1024 * 1024 * 5,  # 5 MB per file
+            "backupCount": 5,  # Keep 5 backup files
+        },
     },
+    # Define loggers for your apps and Django
     "loggers": {
-        "accounts": {
-            "handlers": ["console"],
+        # Root logger (captures all logs not handled by other loggers)
+        "": {
+            "handlers": ["console", "file"],
             "level": "DEBUG",
+            "propagate": True,
+        },
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",  # Reduce noise from Django internals
             "propagate": False,
         },
     },
 }
+
 
 # I18n
 
@@ -327,3 +358,4 @@ MODELTRANSLATION_FALLBACK_LANGUAGES = {
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers.DatabaseScheduler"
